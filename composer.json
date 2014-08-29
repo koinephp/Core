@@ -1,7 +1,7 @@
 {
-    "name": "koine/objects",
+    "name": "koine/core",
     "description": "Primitive types behaving like grown up objects",
-    "homepage":"https://github.com/mjacobus/php-objects",
+    "homepage":"https://github.com/koinephp/core",
     "license": "MIT",
     "authors": [
         {
