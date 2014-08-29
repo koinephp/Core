@@ -24,6 +24,7 @@ Well, not anymore. Hopefully.
 - [Koine\Object](docs/Object.md)
 - [Koine\Hash](docs/Hash.md) - There are tons of contribuitions you can make here
 - [Koine\String](docs/String.md) - And here!
+- [Koine\ArrayReference](docs/ArrayReference.md) - And here!
 
 ## Installing
 
