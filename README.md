@@ -4,17 +4,17 @@ Primitive types behaving like grown up objects. Compatible with PHP 5.3.3+
 
 Code information:
 
-[![Build Status](https://travis-ci.org/koinephp/Objects.png?branch=master)](https://travis-ci.org/koinephp/Objects)
-[![Coverage Status](https://coveralls.io/repos/koinephp/Objects/badge.png?branch=master)](https://coveralls.io/r/koinephp/Objects?branch=master)
-[![Code Climate](https://codeclimate.com/github/koinephp/Objects.png)](https://codeclimate.com/github/koinephp/Objects)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/Objects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/koinephp/Objects/?branch=master)
+[![Build Status](https://travis-ci.org/koinephp/Core.png?branch=master)](https://travis-ci.org/koinephp/Core)
+[![Coverage Status](https://coveralls.io/repos/koinephp/Core/badge.png?branch=master)](https://coveralls.io/r/koinephp/Core?branch=master)
+[![Code Climate](https://codeclimate.com/github/koinephp/Core.png)](https://codeclimate.com/github/koinephp/Core)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/Core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/koinephp/Core/?branch=master)
 
 Package information:
 
-[![Latest Stable Version](https://poser.pugx.org/koine/objects/v/stable.svg)](https://packagist.org/packages/koine/objects)
-[![Total Downloads](https://poser.pugx.org/koine/objects/downloads.svg)](https://packagist.org/packages/koine/objects)
-[![Latest Unstable Version](https://poser.pugx.org/koine/objects/v/unstable.svg)](https://packagist.org/packages/koine/objects)
-[![License](https://poser.pugx.org/koine/objects/license.svg)](https://packagist.org/packages/koine/objects)
+[![Latest Stable Version](https://poser.pugx.org/koine/core/v/stable.svg)](https://packagist.org/packages/koine/core)
+[![Total Downloads](https://poser.pugx.org/koine/core/downloads.svg)](https://packagist.org/packages/koine/core)
+[![Latest Unstable Version](https://poser.pugx.org/koine/core/v/unstable.svg)](https://packagist.org/packages/koine/core)
+[![License](https://poser.pugx.org/koine/core/license.svg)](https://packagist.org/packages/koine/core)
 
 Once you've written some ruby code and you HAVE to write php, you miss the
 hell out off ruby objects.
@@ -36,7 +36,7 @@ Append the lib to your requirements key in your composer.json.
     // [..]
     require: {
         // append this line to your requirements
-        "php-objects/php-objects": "dev-master"
+        "koine/core": "0.9.*"
     }
 }
 ```
@@ -47,7 +47,7 @@ Append the lib to your requirements key in your composer.json.
 
 ## Issues/Features proposals
 
-[Here](https://github.com/mjacobus/php-objects/issues) is the issue tracker.
+[Here](https://github.com/koinephp/Core/issues) is the issue tracker.
 
 ## Contributing
 
