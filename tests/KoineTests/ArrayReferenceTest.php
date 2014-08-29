@@ -27,7 +27,7 @@ class ArrayReferenceTest extends PHPUnit_Framework_TestCase
     {
         $string = '';
 
-        foreach ($this->object as $key  => $value) {
+        foreach ($this->object as $key => $value) {
             $string .= $key . ' ' . $value . ' ';
         }
 
@@ -89,11 +89,11 @@ class ArrayReferenceTest extends PHPUnit_Framework_TestCase
         $this->assertEquals(2, $this->object->count());
     }
 
-     /**
-      * @test
-      */
-     public function whenTheObjectIsChangedTheArrayIsAlsoChanged()
-     {
+    /**
+     * @test
+     */
+    public function whenTheObjectIsChangedTheArrayIsAlsoChanged()
+    {
          $this->object->offsetUnset('lastname');
          $this->assertEquals(array('name' => 'Jon'), $this->array);
 
@@ -110,5 +110,5 @@ class ArrayReferenceTest extends PHPUnit_Framework_TestCase
              array('user' => array('name' => 'Jon')),
              $this->array
          );
-     }
+    }
 }
