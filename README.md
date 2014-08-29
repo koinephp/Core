@@ -1,4 +1,4 @@
-# PHP Core
+# Koine Core
 
 Primitive types behaving like grown up objects. Compatible with PHP 5.3.3+
 
