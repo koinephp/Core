@@ -148,13 +148,10 @@ class StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider atProvider
+     * @requires PHP 5.4
      */
     public function testAt($value, $start, $end, $expected)
     {
-        if (version_compare(PHP_VERSION, '5.3.3', '=')) {
-            $this->markTestSkipped("There is a bug in 5.3.3");
-        }
-
         $object = new String($value);
         $result = $object->at($start, $end);
 
