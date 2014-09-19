@@ -144,7 +144,7 @@ class String extends Object
      * @see https://bugs.php.net/bug.php?id=62703
      *
      * @param integer start
-     * @param  integer   $length the length of the string from the starting point
+     * @param  integer      $length the length of the string from the starting point
      * @return Koine\String
      */
     public function at($start = null, $length = null)

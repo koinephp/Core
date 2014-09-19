@@ -181,7 +181,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      * Select elements if the given function evaluates to true
      *
      * @param  Closure $callable function
-     * @return Hash the new hash containing the non rejected elements
+     * @return Hash    the new hash containing the non rejected elements
      */
     public function select(Closure $callback)
     {
@@ -272,7 +272,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     {
         return $this->create(array_keys($this->toArray()))->map(
             function ($key) {
-                return new String($key);
+                return $key;
             }
         );
     }

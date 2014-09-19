@@ -258,7 +258,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
         $expected = array('foo', 'bar');
 
         $this->assertEquals($expected, $hash->keys()->toArray());
-        $this->assertInstanceOf('Koine\String', $hash->keys()->first());
+        $this->assertEquals('string', gettype($hash->keys()->first()));
     }
 
     public function testHasKey()
