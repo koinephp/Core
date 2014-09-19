@@ -486,4 +486,14 @@ class HashTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertInstanceOf('Koine\Hash', $object);
     }
+
+    /**
+     * @test
+     */
+    public function clearEmptiesHash()
+    {
+        $hash = new Hash(array('foo' => 'bar'));
+
+        $this->assertEquals(array(), $hash->clear()->toArray());
+    }
 }

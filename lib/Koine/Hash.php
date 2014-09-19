@@ -537,4 +537,17 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
             // Fails in hhvm
             // && get_class($callable) === 'Closure';
     }
+
+    /**
+     * Empties hash
+     * @return self
+     */
+    public function clear()
+    {
+        foreach ($this->getKeys() as $key) {
+            $this->delete($key);
+        }
+
+        return $this;
+    }
 }
