@@ -214,10 +214,10 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Maps elements into a new Hash
      *
-     * @param  function $callback
+     * @param  Closure $callback
      * @return Hash
      */
-    public function map($callback)
+    public function map(Closure $callback)
     {
         $hash = $this->create();
 
@@ -268,13 +268,24 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      *
      * @return Hash[String] containing the keys
      */
-    public function keys()
+    public function getKeys()
     {
         return $this->create(array_keys($this->toArray()))->map(
             function ($key) {
                 return $key;
             }
         );
+    }
+
+    /**
+     * Get the array keys
+     *
+     * @deprecated use getKeys instead
+     * @return Hash[String] containing the keys
+     */
+    public function keys()
+    {
+        return $this->getKeys();
     }
 
     /**
@@ -370,7 +381,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      * Get first element
      * @return mixed
      */
-    public function first()
+    public function getFirst()
     {
         $array = $this->toArray(false);
 
@@ -378,14 +389,34 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     }
 
     /**
+     * Get first element
+     * @deprecated use getFirst instead
+     * @return mixed
+     */
+    public function first()
+    {
+        return $this->getFirst();
+    }
+
+    /**
      * Get the last element
      * @return mixed
      */
-    public function last()
+    public function getLast()
     {
         $array = $this->toArray(false);
 
         return array_pop($array);
+    }
+
+    /**
+     * Get the last element
+     * @deprecated use getLast instead
+     * @return mixed
+     */
+    public function last()
+    {
+        return $this->getLast();
     }
 
     /**

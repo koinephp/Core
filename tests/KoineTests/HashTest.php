@@ -257,6 +257,9 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
         $expected = array('foo', 'bar');
 
+        $this->assertEquals($expected, $hash->getKeys()->toArray());
+        $this->assertEquals('string', gettype($hash->getKeys()->first()));
+
         $this->assertEquals($expected, $hash->keys()->toArray());
         $this->assertEquals('string', gettype($hash->keys()->first()));
     }
@@ -334,6 +337,9 @@ class HashTest extends \PHPUnit_Framework_TestCase
     {
         $first = new Hash;
         $hash = new Hash(array($first, 'b'));
+        $this->assertSame($first, $hash->getFirst());
+
+        // deprecated
         $this->assertSame($first, $hash->first());
     }
 
@@ -341,7 +347,10 @@ class HashTest extends \PHPUnit_Framework_TestCase
     {
         $last = new Hash;
         $hash = new Hash(array('a', $last));
-        $this->assertEquals($last, $hash->last());
+        $this->assertSame($last, $hash->getLast());
+
+        $hash = new Hash(array('a', $last));
+        $this->assertSame($last, $hash->last());
     }
 
     public function testGroupByWithCallableObject()
