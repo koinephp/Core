@@ -550,4 +550,25 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
         return $this;
     }
+
+    /**
+     * Merges the two hashes and return a new Instance of a hash
+     * @param Hash
+     * @param  Closure $closure function to resolv conflicts
+     * @return Hash    the merged hash
+     */
+    public function merge(Hash $hash, Closure $closure = null)
+    {
+        $newHash = clone $this;
+
+        foreach ($hash->toArray() as $key => $value) {
+            if ($closure && $this->hasKey($key)) {
+                $value = $closure($key, $this[$key], $value);
+            }
+
+            $newHash[$key] = $value;
+        }
+
+        return $newHash;
+    }
 }

@@ -496,4 +496,77 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals(array(), $hash->clear()->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function hashesCanBeCloned()
+    {
+        $hash = new Hash(array('foo' => 'bar'));
+        $cloned = clone $hash;
+
+        $this->assertEquals($hash->toArray(), $cloned->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function canMergeHashes()
+    {
+        $hash = new Hash(array(
+            'names'   => array('Jon'),
+            'numbers' => array(1, 2, 3),
+            'letters' => array('a', 'b', 'c'),
+        ));
+
+        $other = new Hash(array(
+            'numbers'   => array(3, 4),
+            'countries' => array('Brazil'),
+        ));
+
+        $merged = $hash->merge($other);
+
+        $expected = array(
+            'names'     => array('Jon'),
+            'numbers'   => array(3, 4),
+            'letters'   => array('a', 'b', 'c'),
+            'countries' => array('Brazil'),
+        );
+
+        $this->assertEquals($expected, $merged->toArray());
+    }
+
+    /**
+     * @test
+     */
+    public function mergeAcceptsClosureToModifyMergeBehaviour()
+    {
+        $hash = new Hash(array(
+            'names'   => array('Jon'),
+            'numbers' => array(1, 2, 3),
+            'letters' => array('a', 'b', 'c'),
+        ));
+
+        $other = new Hash(array(
+            'numbers'   => array(3, 4),
+            'countries' => array('Brazil'),
+        ));
+
+        $merged = $hash->merge($other, function ($key, $h1, $h2) {
+            if ($key === 'numbers') {
+                return $h1;
+            }
+
+            return $h2;
+        });
+
+        $expected = array(
+            'names'     => array('Jon'),
+            'numbers'   => array(1, 2, 3),
+            'letters'   => array('a', 'b', 'c'),
+            'countries' => array('Brazil'),
+        );
+
+        $this->assertEquals($expected, $merged->toArray());
+    }
 }
