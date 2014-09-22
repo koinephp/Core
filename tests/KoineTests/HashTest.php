@@ -569,4 +569,45 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
         $this->assertEquals($expected, $merged->toArray());
     }
+
+    /**
+     * @test
+     */
+    public function deepMergeMergesNestedHahes()
+    {
+        $hash = new Hash(array(
+            'href' => '#url',
+            'title' => 'Foo',
+            'data' => array(
+                'remote' => true,
+                'modal' => array(
+                    'title' => 'some title',
+                    'promptOnclose' => false
+                )
+            )
+        ));
+
+        $other = new Hash(array(
+            'title' => 'bar',
+            'data' => array(
+                'remote' => false
+            )
+        ));
+
+        $expected = array(
+            'href' => '#url',
+            'title' => 'bar',
+            'data' => array(
+                'remote' => false,
+                'modal' => array(
+                    'title' => 'some title',
+                    'promptOnclose' => false
+                )
+            )
+        );
+
+        $merged = $hash->deepMerge($other);
+
+        $this->assertEquals($expected, $merged->toArray());
+    }
 }

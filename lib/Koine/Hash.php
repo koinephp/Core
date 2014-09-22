@@ -553,22 +553,65 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Merges the two hashes and return a new Instance of a hash
-     * @param Hash
+     * @param  Hash    $other
      * @param  Closure $closure function to resolv conflicts
      * @return Hash    the merged hash
      */
-    public function merge(Hash $hash, Closure $closure = null)
+    public function merge(Hash $other, Closure $closure = null)
     {
-        $newHash = clone $this;
+        return $this->mergeInto(clone $this, $other, $closure);
+    }
 
-        foreach ($hash->toArray() as $key => $value) {
+    /**
+     * Merges the two nested hashes and return a new Instance of a hash
+     * @param  Hash $other
+     * @return Hash the merged hash
+     */
+    public function deepMerge(Hash $other)
+    {
+        return $this->deepMergeInto(clone $this, $other);
+    }
+
+    /**
+     * Modifies the the first hash and return
+     * @param  Hash    $into
+     * @param  Hash    $other
+     * @param  Closure $closure function to resolv conflicts
+     * @return Hash    the merged hash
+     */
+    protected function deepMergeInto(Hash $into, Hash $other)
+    {
+        foreach ($other as $key => $value) {
+            if (is_object($value)
+                && $value instanceof Hash
+                && $into->hasKey($key)
+            ) {
+                $value = $this->deepMergeInto($into[$key], $value);
+            }
+
+            $into[$key] = $value;
+        }
+
+        return $into;
+    }
+
+    /**
+     * Modifies the the first hash and return
+     * @param  Hash    $into
+     * @param  Hash    $other
+     * @param  Closure $closure function to resolv conflicts
+     * @return Hash    the merged hash
+     */
+    protected function mergeInto(Hash $into, Hash $other, Closure $closure = null)
+    {
+        foreach ($other->toArray() as $key => $value) {
             if ($closure && $this->hasKey($key)) {
                 $value = $closure($key, $this[$key], $value);
             }
 
-            $newHash[$key] = $value;
+            $into[$key] = $value;
         }
 
-        return $newHash;
+        return $into;
     }
 }
