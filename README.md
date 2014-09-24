@@ -15,6 +15,7 @@ Package information:
 [![Total Downloads](https://poser.pugx.org/koine/core/downloads.svg)](https://packagist.org/packages/koine/core)
 [![Latest Unstable Version](https://poser.pugx.org/koine/core/v/unstable.svg)](https://packagist.org/packages/koine/core)
 [![License](https://poser.pugx.org/koine/core/license.svg)](https://packagist.org/packages/koine/core)
+[![Dependency Status](https://gemnasium.com/koinephp/Core.png)](https://gemnasium.com/koinephp/Core)
 
 Once you've written some ruby code and you HAVE to write php, you miss the
 hell out off ruby objects.
