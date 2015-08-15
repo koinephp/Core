@@ -71,7 +71,7 @@ abstract class Object
             return call_user_func_array(array($this, $method), $args);
         }
 
-        $message = new String("Undefined method '");
+        $message = new KoineString("Undefined method '");
         $message->append($method)->append("' for ")->append($this->getClass());
         throw new NoMethodException($message);
     }

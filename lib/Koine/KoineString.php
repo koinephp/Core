@@ -5,7 +5,7 @@ namespace Koine;
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
  */
-class String extends Object
+class KoineString extends Object
 {
 
     protected $content;
@@ -43,23 +43,23 @@ class String extends Object
      */
     public function toUpperCase()
     {
-        return new String(mb_strtoupper($this, 'UTF-8'));
+        return new KoineString(mb_strtoupper($this, 'UTF-8'));
     }
 
     /**
      * To Lower Case
-     * @return String
+     * @return self
      */
     public function toLowerCase()
     {
-        return new String(mb_strtolower($this, 'UTF-8'));
+        return new KoineString(mb_strtolower($this, 'UTF-8'));
     }
 
     /**
      * String to parameter
      *
      * @param string separator
-     * @return String
+     * @return self
      */
     public function parameterize($separator = '-')
     {
@@ -73,17 +73,17 @@ class String extends Object
     /**
      * Replace string
      *
-     * @pattern string regexp or string
+     * @param string $pattern string regexp or string
      * @return String
      */
     public function gsub($pattern, $replacement)
     {
-        $pattern = new String($pattern);
+        $pattern = new KoineString($pattern);
 
         if ($pattern->isRegexp()) {
-            return new String(preg_replace($pattern, $replacement, $this));
+            return new KoineString(preg_replace($pattern, $replacement, $this));
         } else {
-            return new String(str_replace($pattern, $replacement, $this));
+            return new KoineString(str_replace($pattern, $replacement, $this));
         }
     }
 
@@ -107,7 +107,7 @@ class String extends Object
     /**
      * Splits the string
      * @param string separator
-     * @return Hash[String]
+     * @return Hash[KoineString]
      */
     public function split($separator)
     {
@@ -115,7 +115,7 @@ class String extends Object
 
         return $hash->map(
             function ($value) {
-                return new String($value);
+                return new KoineString($value);
             }
         );
     }
@@ -145,19 +145,19 @@ class String extends Object
      *
      * @param integer start
      * @param  integer      $length the length of the string from the starting point
-     * @return Koine\String
+     * @return KoineString
      */
     public function at($start = null, $length = null)
     {
-        return new String(mb_substr((string) $this, $start, $length, 'UTF-8'));
+        return new KoineString(mb_substr((string) $this, $start, $length, 'UTF-8'));
     }
 
     /**
      * Removes leading and trailing spaces
-     * @return Koine\String
+     * @return String
      */
     public function trim()
     {
-        return new String(trim((string) $this));
+        return new KoineString(trim((string) $this));
     }
 }

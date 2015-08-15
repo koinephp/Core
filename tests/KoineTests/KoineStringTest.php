@@ -2,12 +2,12 @@
 
 namespace KoineTests;
 
-use Koine\String;
+use Koine\KoineString;
 
 /**
  * @author Marcelo Jacobus <marcelo.jacobus@gmail.com>
  */
-class StringTest extends \PHPUnit_Framework_TestCase
+class KoineStringTest extends \PHPUnit_Framework_TestCase
 {
 
     /**
@@ -15,17 +15,17 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testItCanBeConvertedToString()
     {
-        $string = new String('hello');
+        $string = new KoineString('hello');
         $this->assertEquals('hello world', $string . ' world');
     }
 
     /**
-     * @covers Koine\String::append()
+     * @covers Koine\KoineString::append()
      */
     public function testItCanAppendString()
     {
-        $string = new String;
-        $string->append('abc')->append(new String('de'));
+        $string = new KoineString;
+        $string->append('abc')->append(new KoineString('de'));
         $this->assertEquals('abcde', (string) $string);
     }
 
@@ -42,24 +42,24 @@ class StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider caseProvider
-     * @covers Koine\String::toUpperCase()
+     * @covers Koine\KoineString::toUpperCase()
      */
     public function testToUppercase($lower, $upper)
     {
-        $string = new String($lower);
+        $string = new KoineString($lower);
         $this->assertEquals($upper, $string->toUpperCase());
-        $this->assertInstanceOf('Koine\String', $string->toUpperCase());
+        $this->assertInstanceOf('Koine\KoineString', $string->toUpperCase());
     }
 
     /**
      * @dataProvider caseProvider
-     * @covers Koine\String::toLowerCase()
+     * @covers Koine\KoineString::toLowerCase()
      */
     public function testToLowerCase($lower, $upper)
     {
-        $string = new String($upper);
+        $string = new KoineString($upper);
         $this->assertEquals($lower, $string->toLowerCase());
-        $this->assertInstanceOf('Koine\String', $string->toLowerCase());
+        $this->assertInstanceOf('Koine\KoineString', $string->toLowerCase());
     }
 
     /**
@@ -76,13 +76,13 @@ class StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider parameterizedProvider
-     * @covers Koine\String::parameterize()
+     * @covers Koine\KoineString::parameterize()
      */
     public function testParameterize($normal, $parameterized, $separator)
     {
-        $string = new String($normal);
+        $string = new KoineString($normal);
         $this->assertEquals($parameterized, $string->parameterize($separator));
-        $this->assertInstanceOf('Koine\String', $string->toLowerCase());
+        $this->assertInstanceOf('Koine\KoineString', $string->toLowerCase());
     }
 
     /**
@@ -98,23 +98,23 @@ class StringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider providerForGsub
-     * @covers Koine\String::gsub()
+     * @covers Koine\KoineString::gsub()
      */
     public function testGsub($string, $find, $replacement, $expected)
     {
-        $string = new String($string);
+        $string = new KoineString($string);
         $result = $string->gsub($find, $replacement);
         $this->assertEquals($expected, $result);
-        $this->assertInstanceOf('Koine\String', $result);
+        $this->assertInstanceOf('Koine\KoineString', $result);
     }
 
     public function testSplit()
     {
-        $string   = new String('a, b, c');
+        $string   = new KoineString('a, b, c');
         $expected = array('a', 'b', 'c');
         $split    = $string->split(', ');
         $this->assertEquals($expected, $split->toArray());
-        $this->assertInstanceOf('Koine\String', $split->first());
+        $this->assertInstanceOf('Koine\KoineString', $split->first());
     }
 
     public function countProvider()
@@ -130,7 +130,7 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testCount($string, $count)
     {
-        $string = new String($string);
+        $string = new KoineString($string);
         $this->assertEquals($count, $string->count());
     }
 
@@ -152,16 +152,16 @@ class StringTest extends \PHPUnit_Framework_TestCase
      */
     public function testAt($value, $start, $end, $expected)
     {
-        $object = new String($value);
+        $object = new KoineString($value);
         $result = $object->at($start, $end);
 
-        $this->assertInstanceOf('Koine\String', $result);
+        $this->assertInstanceOf('Koine\KoineString', $result);
         $this->assertEquals($expected, (string) $result);
     }
 
     public function testTrim()
     {
-        $object = new String('  abc ');
+        $object = new KoineString('  abc ');
         $this->assertEquals('abc', $object->trim()->toString());
     }
 }

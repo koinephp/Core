@@ -2,7 +2,7 @@
 
 namespace Dummy;
 
-use Koine\String;
+use Koine\KoineString;
 
 class Object extends \Koine\Object
 {
@@ -19,7 +19,7 @@ class Object extends \Koine\Object
 
     public function exampleThree($a, $b = null, $c = null)
     {
-        $string = new String('argumets: a: ');
+        $string = new KoineString('argumets: a: ');
         $string->append($a)
             ->append(', b: ')
             ->append($b)
