@@ -4,10 +4,10 @@ Primitive types behaving like grown up objects. Compatible with PHP 5.3.3+
 
 Code information:
 
-[![Build Status](https://travis-ci.org/koinephp/Core.png?branch=master)](https://travis-ci.org/koinephp/Core)
-[![Coverage Status](https://coveralls.io/repos/koinephp/Core/badge.png?branch=master)](https://coveralls.io/r/koinephp/Core?branch=master)
+[![Build Status](https://travis-ci.org/koinephp/Core.png?branch=v0.9)](https://travis-ci.org/koinephp/Core)
+[![Coverage Status](https://coveralls.io/repos/koinephp/Core/badge.png?branch=v0.9)](https://coveralls.io/r/koinephp/Core?branch=v0.9)
 [![Code Climate](https://codeclimate.com/github/koinephp/Core.png)](https://codeclimate.com/github/koinephp/Core)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/Core/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/koinephp/Core/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/koinephp/Core/badges/quality-score.png?b=v0.9)](https://scrutinizer-ci.com/g/koinephp/Core/?branch=v0.9)
 
 Package information:
 
