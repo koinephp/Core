@@ -6,7 +6,6 @@ use Koine\KoineString;
 
 class Object extends \Koine\Object
 {
-
     public function exampleOne()
     {
         return 'example one';
@@ -31,7 +30,6 @@ class Object extends \Koine\Object
 
     protected function protectedMethod()
     {
-
     }
 
     private function privateMethod()

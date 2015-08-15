@@ -94,19 +94,19 @@ class ArrayReferenceTest extends PHPUnit_Framework_TestCase
      */
     public function whenTheObjectIsChangedTheArrayIsAlsoChanged()
     {
-         $this->object->offsetUnset('lastname');
-         $this->assertEquals(array('name' => 'Jon'), $this->array);
+        $this->object->offsetUnset('lastname');
+        $this->assertEquals(array('name' => 'Jon'), $this->array);
 
-         unset($this->object['name']);
-         $this->assertEquals(array(), $this->array);
+        unset($this->object['name']);
+        $this->assertEquals(array(), $this->array);
 
-         $this->array['foo'] = 'bar';
-         $this->assertEquals(array('foo' => 'bar'), $this->object->toArray());
-         $this->object->offsetUnset('foo');
+        $this->array['foo'] = 'bar';
+        $this->assertEquals(array('foo' => 'bar'), $this->object->toArray());
+        $this->object->offsetUnset('foo');
 
-         $this->object['user'] = array('name' => 'Jon');
+        $this->object['user'] = array('name' => 'Jon');
 
-         $this->assertEquals(
+        $this->assertEquals(
              array('user' => array('name' => 'Jon')),
              $this->array
          );

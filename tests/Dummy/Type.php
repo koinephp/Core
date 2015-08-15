@@ -4,7 +4,6 @@ namespace Dummy;
 
 class Type
 {
-
     public static function requireArray(array $var)
     {
         return $var;

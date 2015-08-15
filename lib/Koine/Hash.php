@@ -13,16 +13,15 @@ use Closure;
  */
 class Hash extends Object implements ArrayAccess, Iterator, Countable
 {
-
     /**
      * @var array
      */
     protected $values = array();
 
     /**
-     * @param array   $values    The values to initially set to the Hash
-     * @param boolean $recursive Whether to recursively transform arrays into
-     *                           Objects
+     * @param array $values    The values to initially set to the Hash
+     * @param bool  $recursive Whether to recursively transform arrays into
+     *                         Objects
      */
     public function __construct(array $values = array(), $recursive = true)
     {
@@ -39,7 +38,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Converts hash to array
-     * @param  boolean $recursive defaults to true
+     *
+     * @param bool $recursive defaults to true
+     *
      * @return array
      */
     public function toArray($recursive = true)
@@ -52,7 +53,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
         foreach ($values as $key => $value) {
             if (gettype($value) === 'object') {
-                if ($value instanceof Hash) {
+                if ($value instanceof self) {
                     $value = $value->toArray($recursive);
                 }
             }
@@ -149,6 +150,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Get a new Hash without elements that have empty or null values
+     *
      * @return Hash
      */
     public function compact()
@@ -161,8 +163,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Rejects elements if the given function evaluates to true
      *
-     * @param  Closure $callable function
-     * @return Hash    the new hash containing the non rejected elements
+     * @param Closure $callable function
+     *
+     * @return Hash the new hash containing the non rejected elements
      */
     public function reject(Closure $callback)
     {
@@ -180,8 +183,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Select elements if the given function evaluates to true
      *
-     * @param  Closure $callable function
-     * @return Hash    the new hash containing the non rejected elements
+     * @param Closure $callable function
+     *
+     * @return Hash the new hash containing the non rejected elements
      */
     public function select(Closure $callback)
     {
@@ -199,9 +203,10 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * A factory for Hash
      *
-     * @param  array   $params    the params to create a new object
-     * @param  boolean $recursive whether or not to recursive change arrays into
-     *                            objects
+     * @param array $params    the params to create a new object
+     * @param bool  $recursive whether or not to recursive change arrays into
+     *                         objects
+     *
      * @return Hash
      */
     public static function create(array $params = array(), $recursive = true)
@@ -214,7 +219,8 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Maps elements into a new Hash
      *
-     * @param  Closure $callback
+     * @param Closure $callback
+     *
      * @return Hash
      */
     public function map(Closure $callback)
@@ -231,7 +237,8 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Loop the elements of the Hash
      *
-     * @param  Closure $callable function
+     * @param Closure $callable function
+     *
      * @return Hash
      */
     public function each(Closure $callable)
@@ -246,7 +253,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Check if has any element
      *
-     * @return boolean
+     * @return bool
      */
     public function isEmpty()
     {
@@ -281,6 +288,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      * Get the array keys
      *
      * @deprecated use getKeys instead
+     *
      * @return Hash[String] containing the keys
      */
     public function keys()
@@ -291,7 +299,8 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Check object has given key
      *
-     * @param  string $key
+     * @param string $key
+     *
      * @return bool
      */
     public function hasKey($key)
@@ -302,8 +311,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Gets teh index and removes it from the object
      *
-     * @param  string $key
-     * @return mixed  the element on the given index
+     * @param string $key
+     *
+     * @return mixed the element on the given index
      */
     public function delete($key)
     {
@@ -316,9 +326,11 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Get the value by the key. Throws exception when key is not set
      *
-     * @param  string                   $key
-     * @param  mixed                    $default either value or callable function
-     * @return mixed                    the value for the given key
+     * @param string $key
+     * @param mixed  $default either value or callable function
+     *
+     * @return mixed the value for the given key
+     *
      * @throws InvalidArgumentException
      */
     public function fetch($key, $default = null)
@@ -326,7 +338,6 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
         if ($this->hasKey($key)) {
             return $this[$key];
         } elseif ($default !== null) {
-
             if (is_callable($default)) {
                 return $default($key);
             }
@@ -347,6 +358,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      *    </code>
      *
      * @param mixed keys
+     *
      * @return Hash containing the values at the given keys
      */
     public function valuesAt()
@@ -369,7 +381,8 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Join the values of the object
      *
-     * @param  string $separator defauts to empty string
+     * @param string $separator defauts to empty string
+     *
      * @return string
      */
     public function join($separator = '')
@@ -379,6 +392,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Get first element
+     *
      * @return mixed
      */
     public function getFirst()
@@ -390,7 +404,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Get first element
+     *
      * @deprecated use getFirst instead
+     *
      * @return mixed
      */
     public function first()
@@ -400,6 +416,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Get the last element
+     *
      * @return mixed
      */
     public function getLast()
@@ -411,7 +428,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Get the last element
+     *
      * @deprecated use getLast instead
+     *
      * @return mixed
      */
     public function last()
@@ -422,8 +441,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Group elements by the given criteria
      *
-     * @param  mixed $criteria it can be either a callable function or a string,
-     *                         representing a key of an element
+     * @param mixed $criteria it can be either a callable function or a string,
+     *                        representing a key of an element
+     *
      * @return Hash
      */
     public function groupBy($criteria)
@@ -444,8 +464,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
     /**
      * Sort elements by the given criteria
      *
-     * @param  mixed $criteria it can be either a callable function or a string,
-     *                         representing a key of an element
+     * @param mixed $criteria it can be either a callable function or a string,
+     *                        representing a key of an element
+     *
      * @return Hash
      */
     public function sortBy($criteria)
@@ -474,7 +495,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      * Tells if the object includes the given element in the first
      * level of the collection. Strict mode. compares type
      *
-     * @return boolean
+     * @return bool
      */
     public function hasValue($value)
     {
@@ -528,8 +549,10 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Param is function?
-     * @param  mixed   $callable
-     * @return boolean
+     *
+     * @param mixed $callable
+     *
+     * @return bool
      */
     protected function isCallable($callable)
     {
@@ -540,6 +563,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Empties hash
+     *
      * @return self
      */
     public function clear()
@@ -553,9 +577,11 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Merges the two hashes and return a new Instance of a hash
-     * @param  Hash    $other
-     * @param  Closure $closure function to resolv conflicts
-     * @return Hash    the merged hash
+     *
+     * @param Hash    $other
+     * @param Closure $closure function to resolv conflicts
+     *
+     * @return Hash the merged hash
      */
     public function merge(Hash $other, Closure $closure = null)
     {
@@ -564,7 +590,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Merges the two nested hashes and return a new Instance of a hash
-     * @param  Hash $other
+     *
+     * @param Hash $other
+     *
      * @return Hash the merged hash
      */
     public function deepMerge(Hash $other)
@@ -574,16 +602,18 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Modifies the the first hash and return
-     * @param  Hash    $into
-     * @param  Hash    $other
-     * @param  Closure $closure function to resolv conflicts
-     * @return Hash    the merged hash
+     *
+     * @param Hash    $into
+     * @param Hash    $other
+     * @param Closure $closure function to resolv conflicts
+     *
+     * @return Hash the merged hash
      */
     protected function deepMergeInto(Hash $into, Hash $other)
     {
         foreach ($other as $key => $value) {
             if (is_object($value)
-                && $value instanceof Hash
+                && $value instanceof self
                 && $into->hasKey($key)
             ) {
                 $value = $this->deepMergeInto($into[$key], $value);
@@ -597,10 +627,12 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
 
     /**
      * Modifies the the first hash and return
-     * @param  Hash    $into
-     * @param  Hash    $other
-     * @param  Closure $closure function to resolv conflicts
-     * @return Hash    the merged hash
+     *
+     * @param Hash    $into
+     * @param Hash    $other
+     * @param Closure $closure function to resolv conflicts
+     *
+     * @return Hash the merged hash
      */
     protected function mergeInto(Hash $into, Hash $other, Closure $closure = null)
     {

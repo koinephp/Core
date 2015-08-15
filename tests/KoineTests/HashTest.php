@@ -9,10 +9,9 @@ use Koine\Hash;
  */
 class HashTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testItCanBeAccessWithHash()
     {
-        $hash = new Hash;
+        $hash = new Hash();
 
         $this->assertFalse(isset($hash['foo']));
         $hash['foo'] = 'bar';
@@ -36,14 +35,14 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testItCanGetDefaultValues()
     {
-        $object = new Hash;
+        $object = new Hash();
         $this->assertNull($object['foo']);
         $this->assertEquals('bar', $object->offsetGet('foo', 'bar'));
     }
 
     public function testIsCanUnsetKey()
     {
-        $hash = new Hash(array('a' => 'b', 'b' => 'c' ));
+        $hash = new Hash(array('a' => 'b', 'b' => 'c'));
 
         $hash->offsetUnset('a');
         $this->assertEquals(array('b' => 'c'), $hash->toArray());
@@ -55,13 +54,13 @@ class HashTest extends \PHPUnit_Framework_TestCase
     public function testItIsConsideredAnArray()
     {
         $this->markTestSkipped('Perhaps it is not possible');
-        $this->assertTrue(is_array(new Hash));
+        $this->assertTrue(is_array(new Hash()));
     }
 
     public function testItCanBeConvertedToArray()
     {
         $this->markTestSkipped('Perhaps it is not possible');
-        $array = array('a' => 'b', 'b' => 'c' );
+        $array = array('a' => 'b', 'b' => 'c');
         $hash = new Hash($array);
         $this->assertEquals($array, Dummy\Type::toArray($hash));
     }
@@ -146,7 +145,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
     {
         $hash = new Hash(array('a' => 'b', 'c' => 'd'));
 
-        $array = new Hash;
+        $array = new Hash();
 
         $hash->each(function ($value) use ($array) {
             $array[] = $value;
@@ -154,7 +153,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
             $array[] = $value;
         });
 
-        $expectation = array( 'b', 'd', 'b', 'd');
+        $expectation = array('b', 'd', 'b', 'd');
 
         $this->assertEquals($expectation, $array->toArray());
     }
@@ -163,7 +162,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
     {
         $hash = new Hash(array('a' => 'b', 'c' => 'd'));
 
-        $array = new Hash;
+        $array = new Hash();
 
         $hash->each(function ($value, $key) use ($array) {
             $array[] = $key;
@@ -183,7 +182,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testItCanFactoryTheCorrectClass()
     {
-        $hash = new \Dummy\Hash;
+        $hash = new \Dummy\Hash();
         $created = $hash->create();
         $this->assertInstanceOf('\Dummy\Hash', $created);
 
@@ -197,12 +196,12 @@ class HashTest extends \PHPUnit_Framework_TestCase
         $params = array(
             'user' => array(
                 'city' => array(
-                    'name' => 'Novo Hamburgo',
+                    'name'  => 'Novo Hamburgo',
                     'state' => array(
-                        'name' => 'RS'
-                    )
-                )
-            )
+                        'name' => 'RS',
+                    ),
+                ),
+            ),
         );
 
         $hash = \Dummy\Hash::create($params);
@@ -251,7 +250,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
         $hash = new Hash(
             array(
                 'foo' => 'foobar',
-                'bar' => 'barfoo'
+                'bar' => 'barfoo',
             )
         );
 
@@ -274,7 +273,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testDelete()
     {
-        $object = new Hash;
+        $object = new Hash();
         $hash = Hash::create(array('foo' => $object, 'b' => 'bar'));
         $deleted = $hash->delete('foo');
 
@@ -308,7 +307,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
             return "default for '$key'";
         };
 
-        $this->assertEquals("bar", $hash->fetch('foo', $function));
+        $this->assertEquals('bar', $hash->fetch('foo', $function));
         $this->assertEquals("default for 'k'", $hash->fetch('k', $function));
     }
 
@@ -327,7 +326,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testJoin()
     {
-        $hash = new Hash(array('a' => 'b', 'c' => 'd' ));
+        $hash = new Hash(array('a' => 'b', 'c' => 'd'));
 
         $this->assertEquals('bd', $hash->join());
         $this->assertEquals('b, d', $hash->join(', '));
@@ -335,7 +334,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testFirst()
     {
-        $first = new Hash;
+        $first = new Hash();
         $hash = new Hash(array($first, 'b'));
         $this->assertSame($first, $hash->getFirst());
 
@@ -345,7 +344,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testLast()
     {
-        $last = new Hash;
+        $last = new Hash();
         $hash = new Hash(array('a', $last));
         $this->assertSame($last, $hash->getLast());
 
@@ -367,7 +366,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             20 => array($foo, $bar),
-            21 => array($baz)
+            21 => array($baz),
         );
 
         $this->assertEquals($expected, $groups->toArray());
@@ -385,7 +384,7 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
         $expected = array(
             20 => array($foo, $bar),
-            21 => array($baz)
+            21 => array($baz),
         );
 
         $this->assertEquals($expected, $groups->toArray());
@@ -425,9 +424,9 @@ class HashTest extends \PHPUnit_Framework_TestCase
         $params = array(
             'foo' => array(
                 'bar' => array(
-                    'baz' => 'foobar'
-                )
-            )
+                    'baz' => 'foobar',
+                ),
+            ),
         );
 
         $hash = Hash::create($params);
@@ -437,16 +436,16 @@ class HashTest extends \PHPUnit_Framework_TestCase
 
     public function testHasValue()
     {
-        $foo = new Hash;
-        $bar = new Hash;
-        $baz = new Hash;
+        $foo = new Hash();
+        $bar = new Hash();
+        $baz = new Hash();
 
         $hash = Hash::create(
             array(
                 $foo,
                 'a'      => 'b',
                 'bar'    => $bar,
-                'number' => '2'
+                'number' => '2',
             )
         );
 
@@ -576,34 +575,34 @@ class HashTest extends \PHPUnit_Framework_TestCase
     public function deepMergeMergesNestedHahes()
     {
         $hash = new Hash(array(
-            'href' => '#url',
+            'href'  => '#url',
             'title' => 'Foo',
-            'data' => array(
+            'data'  => array(
                 'remote' => true,
-                'modal' => array(
-                    'title' => 'some title',
-                    'promptOnclose' => false
-                )
-            )
+                'modal'  => array(
+                    'title'         => 'some title',
+                    'promptOnclose' => false,
+                ),
+            ),
         ));
 
         $other = new Hash(array(
             'title' => 'bar',
-            'data' => array(
-                'remote' => false
-            )
+            'data'  => array(
+                'remote' => false,
+            ),
         ));
 
         $expected = array(
-            'href' => '#url',
+            'href'  => '#url',
             'title' => 'bar',
-            'data' => array(
+            'data'  => array(
                 'remote' => false,
-                'modal' => array(
-                    'title' => 'some title',
-                    'promptOnclose' => false
-                )
-            )
+                'modal'  => array(
+                    'title'         => 'some title',
+                    'promptOnclose' => false,
+                ),
+            ),
         );
 
         $merged = $hash->deepMerge($other);

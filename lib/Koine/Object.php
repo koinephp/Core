@@ -9,6 +9,7 @@ abstract class Object
 {
     /**
      * Get the class name of the object
+     *
      * @return string
      */
     public function getClass()
@@ -18,6 +19,7 @@ abstract class Object
 
     /**
      * Object to string
+     *
      * @return string
      */
     public function toString()
@@ -29,6 +31,7 @@ abstract class Object
      * Alias to missingMethod()
      *
      * @see Koine\Object::methodMissing()
+     *
      * @throws Koine\NoMethodException
      */
     public function __call($method, $args)
@@ -48,8 +51,11 @@ abstract class Object
 
     /**
      * Dinamicaly calls method
+     *
      * @see Koine\Object::__send
+     *
      * @return mixed
+     *
      * @throws Koine\NoMethodError
      */
     public function send()
@@ -59,7 +65,9 @@ abstract class Object
 
     /**
      * Dinamicaly calls method
+     *
      * @return mixed
+     *
      * @throws Koine\NoMethodError
      */
     final public function __send()
@@ -78,7 +86,8 @@ abstract class Object
 
     /**
      * Informs if the given method exists
-     * @return boolean
+     *
+     * @return bool
      */
     final public function __respondTo($method)
     {
@@ -87,7 +96,8 @@ abstract class Object
 
     /**
      * Informs if the given method exists
-     * @return boolean
+     *
+     * @return bool
      */
     public function respondTo($method)
     {
@@ -96,6 +106,7 @@ abstract class Object
 
     /**
      * Get the methods that the object responds to
+     *
      * @see Koine\Object::__getMethods()
      *
      * @return Koine\Hash.

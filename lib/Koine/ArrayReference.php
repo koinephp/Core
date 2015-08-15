@@ -18,18 +18,21 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * The given array will be modified by this object
+     *
      * @param array $array The array you want to reference as an object
      */
     public function __construct(array &$array)
     {
-        $this->data =& $array;
+        $this->data = &$array;
     }
 
     /**
      * Gets an element from the array
      * ArrayAccess implementation
-     * @param  mixed   $key
-     * @return boolean
+     *
+     * @param mixed $key
+     *
+     * @return bool
      */
     public function offsetExists($key)
     {
@@ -39,7 +42,9 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
     /**
      * Get an element of the array
      * ArrayAccess implementation
-     * @param  mixed $key
+     *
+     * @param mixed $key
+     *
      * @return mixed
      */
     public function offsetGet($key)
@@ -69,7 +74,9 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * ArrayAccess implementation
-     * @param  mixed $key
+     *
+     * @param mixed $key
+     *
      * @return mixed
      */
     public function offsetUnset($key)
@@ -89,6 +96,7 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * Iterator implementation
+     *
      * @return mixed
      */
     public function next()
@@ -98,6 +106,7 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * Iterator implementation
+     *
      * @return mixed
      */
     public function key()
@@ -107,6 +116,7 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * Iterator implementation
+     *
      * @return self
      */
     public function rewind()
@@ -118,7 +128,8 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
 
     /**
      * Iterator implementation
-     * @return boolean
+     *
+     * @return bool
      */
     public function valid()
     {
@@ -130,6 +141,7 @@ class ArrayReference implements ArrayAccess, Iterator, Countable
     /**
      * Get the number of elements
      * Countable implementation
+     *
      * @return int the number of elements
      */
     public function count()

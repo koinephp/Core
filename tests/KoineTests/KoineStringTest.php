@@ -9,7 +9,6 @@ use Koine\KoineString;
  */
 class KoineStringTest extends \PHPUnit_Framework_TestCase
 {
-
     /**
      * @covers Koine\String::__toString()
      */
@@ -24,7 +23,7 @@ class KoineStringTest extends \PHPUnit_Framework_TestCase
      */
     public function testItCanAppendString()
     {
-        $string = new KoineString;
+        $string = new KoineString();
         $string->append('abc')->append(new KoineString('de'));
         $this->assertEquals('abcde', (string) $string);
     }

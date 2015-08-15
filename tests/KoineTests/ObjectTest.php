@@ -2,7 +2,6 @@
 
 namespace KoineTests;
 
-use Koine\Object;
 use Dummy\Object as Dummy;
 
 /**
@@ -10,10 +9,9 @@ use Dummy\Object as Dummy;
  */
 class ObjectTest extends \PHPUnit_Framework_TestCase
 {
-
     public function testCanGetClass()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $this->assertEquals('Dummy\Object', $object->getClass());
     }
 
@@ -24,26 +22,26 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
      */
     public function testItThrowsExceptionOnMethodMissing()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $object->unexistingMethod();
     }
 
     public function testSendWithNoArguments()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $this->assertEquals('example one', $object->send('exampleOne'));
     }
 
     public function testSendWithOneArgument()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $return = $object->send('exampleTwo', 'abc');
         $this->assertEquals('argumets: abc', $return);
     }
 
     public function testSendWithSeveralArgument()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $return = $object->send('exampleThree', 'a', 'b', 'c');
 
         $this->assertEquals(
@@ -54,14 +52,14 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
 
     public function testRespondTo()
     {
-        $object = new Dummy;
+        $object = new Dummy();
         $this->assertTrue($object->respondTo('exampleOne'));
         $this->assertFalse($object->respondTo('undefinedMethod'));
     }
 
     public function testGetMethods()
     {
-        $object = new Dummy;
+        $object = new Dummy();
 
         $methods = array('exampleOne', 'exampleTwo', 'exampleThree');
 
@@ -70,6 +68,5 @@ class ObjectTest extends \PHPUnit_Framework_TestCase
         foreach ($methods as $method) {
             $this->assertTrue(in_array($method, $objectMethods));
         }
-
     }
 }
