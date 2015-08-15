@@ -9,18 +9,12 @@ use Koine\KoineString;
  */
 class KoineStringTest extends \PHPUnit_Framework_TestCase
 {
-    /**
-     * @covers Koine\String::__toString()
-     */
     public function testItCanBeConvertedToString()
     {
         $string = new KoineString('hello');
         $this->assertEquals('hello world', $string . ' world');
     }
 
-    /**
-     * @covers Koine\KoineString::append()
-     */
     public function testItCanAppendString()
     {
         $string = new KoineString();
@@ -41,7 +35,6 @@ class KoineStringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider caseProvider
-     * @covers Koine\KoineString::toUpperCase()
      */
     public function testToUppercase($lower, $upper)
     {
@@ -52,7 +45,6 @@ class KoineStringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider caseProvider
-     * @covers Koine\KoineString::toLowerCase()
      */
     public function testToLowerCase($lower, $upper)
     {
@@ -75,7 +67,6 @@ class KoineStringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider parameterizedProvider
-     * @covers Koine\KoineString::parameterize()
      */
     public function testParameterize($normal, $parameterized, $separator)
     {
@@ -97,7 +88,6 @@ class KoineStringTest extends \PHPUnit_Framework_TestCase
 
     /**
      * @dataProvider providerForGsub
-     * @covers Koine\KoineString::gsub()
      */
     public function testGsub($string, $find, $replacement, $expected)
     {
