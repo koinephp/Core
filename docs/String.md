@@ -1,10 +1,10 @@
-# String
+# KoineString
 
 This is a (work in progress) port of Ruby String to PHP. Not all methods will be ported.
 The examplified methods are already ported. The non documented methods must be implemented.
 
 ```php
-use Koine\Hash;
+use Koine\KoineString;
 ```
 
 The methods that have description are the ones that were impplemented. Fill free to write your implementation.
@@ -12,7 +12,7 @@ The methods that have description are the ones that were impplemented. Fill free
 - ```ascii_only?```
 - ```at``` - returns the string whitin a given range. Works like substr
 ```php
-$string = new String('abcde');
+$string = new KoineString('abcde');
 $string->at(0); // a
 $string->at(1); // b
 $string->at(1, 3); // bcd
