@@ -69,6 +69,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function offsetGet($key, $default = null)
     {
+        echo "\n", __METHOD__, "\n";
         return isset($this->values[$key]) ? $this->values[$key] : $default;
     }
 
@@ -77,6 +78,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function offsetSet($key, $value)
     {
+        echo "\n", __METHOD__, "\n";
         if (is_null($key)) {
             $this->values[] = $value;
         } else {
@@ -91,6 +93,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function offsetExists($key)
     {
+        echo "\n", __METHOD__, "\n";
         return isset($this->values[$key]);
     }
 
@@ -99,6 +102,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function offsetUnset($key)
     {
+        echo "\n", __METHOD__, "\n";
         unset($this->values[$key]);
 
         return $this;
@@ -109,7 +113,12 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function current()
     {
-        return current($this->values);
+        echo "\n", __METHOD__, "\n";
+        $current =  current($this->values);
+
+        var_export($current);
+
+        return $current;
     }
 
     /**
@@ -117,7 +126,10 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function next()
     {
-        return next($this->values);
+        echo "\n", __METHOD__, "\n";
+        $next = next($this->values);
+        var_export($next);
+        return $next;
     }
 
     /**
@@ -125,7 +137,10 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function key()
     {
-        return key($this->values);
+        echo "\n", __METHOD__, "\n";
+        $key = key($this->values);
+        var_export($key);
+        return $key;
     }
 
     /**
@@ -133,6 +148,7 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function rewind()
     {
+        echo "\n", __METHOD__, "\n";
         reset($this->values);
 
         return $this;
@@ -143,7 +159,9 @@ class Hash extends Object implements ArrayAccess, Iterator, Countable
      */
     public function valid()
     {
+        echo "\n", __METHOD__, "\n";
         $key = key($this->values);
+        var_export($key);
 
         return ($key !== null && $key !== false);
     }
